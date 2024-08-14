@@ -15,6 +15,12 @@ setTable <- function(data) {
     group_by(year, month) %>%
     summarise(total_precipitation = sum(precipitation))
   
+  # Create a dataframe with all combinations of year and month
+  all_months <- expand.grid(year = unique(precipitation_by_month$year), month = 1:12)
+  
+  # Left join with precipitation_by_month
+  precipitation_by_month <- left_join(all_months, precipitation_by_month, by = c("year", "month"))
+  
   # Rename months in the DataFrame to their respective names (January, ..., December)
   precipitation_by_month <- precipitation_by_month %>%
     pivot_wider(names_from = month, values_from = total_precipitation) %>%

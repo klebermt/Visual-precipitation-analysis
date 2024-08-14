@@ -6,7 +6,7 @@ getGraphMonth <- function(data, name) {
   ggplot(data, aes(x = month, y = pp)) +
     geom_line(aes(color = "Precipitation"), na.rm = TRUE, show.legend = FALSE) +  # Add a line plot for precipitation
     geom_point(size = 0.5, color = "#7CB5EC") +  # Add points with smaller size and same color as the line
-    geom_smooth(method = "lm", formula = y ~ x, color = "#ff0000", se = FALSE) +  # Add linear regression line
+    geom_smooth(method = "lm", formula = y ~ x, color = "#ff0000", se = FALSE, linewidth= 0.3) +  # Add linear regression line
     labs(title = paste("Histograma de precipitación (mm) - Estación", name),
          x = paste("Periodo (", min(data$year), "-", max(data$year), ")"), 
          y = "Precipitación (mm)",
